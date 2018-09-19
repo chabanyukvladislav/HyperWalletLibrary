@@ -1,33 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Security;
 using System.Threading.Tasks;
-using HyperWalletLibrary.Components;
+using HyperWalletLibrary.Model;
 
 namespace HyperWalletLibrary.Api
 {
-    public static class User
+    public class User : AbstractHyperWalletApi<Model.User>
     {
-        private const string ADDRESS = @"https://api.sandbox.hyperwallet.com/rest/v3/users";
+        private const string USER_TOKEN = @"";
+        private const string LOCAL_ADDRESS = @"";
 
-        public static async Task<IEnumerable<Model.User>> GetAsync()
+        public User(string programToken, string username, SecureString password) : base(USER_TOKEN, LOCAL_ADDRESS, programToken, username, password) { }
+
+        public override async Task<Response<Model.User>> GetAsync(string token = "")
         {
-            HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
-            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            HttpResponseMessage response = await httpClient.GetAsync(new Uri(ADDRESS + "/username=restapiuser@15472201613&&password=Ke002308!!"));
-            string content = await response.Content.ReadAsStringAsync();
-            return JsonToEnumerableOfUserConverter.Convert(content);
+            return await base.GetAsync(token);
         }
 
-        public static async Task<Model.User> GetAsync(string token)
+        public override async Task<Response<Model.User>> PostAsync(Model.User item)
         {
-            HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
-            httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            HttpResponseMessage response = await httpClient.GetAsync(new Uri(ADDRESS + "/" + token + "/username=restapiuser@15472201613&&password=Ke002308!!"));
-            string content = await response.Content.ReadAsStringAsync();
-            return JsonToUserConverter.Convert(content);
+            return await base.PostAsync(item);
+        }
+
+        public override async Task<Response<Model.User>> PutAsync(string token, Model.User item)
+        {
+            return await base.PutAsync(token, item);
         }
     }
 }

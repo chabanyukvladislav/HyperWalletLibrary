@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace HyperWalletLibrary.Model.UserModel
+﻿namespace HyperWalletLibrary.Model.UserModel
 {
-    [Serializable]
     public enum VerificationStatus
     {
         NOT_REQUIRED,

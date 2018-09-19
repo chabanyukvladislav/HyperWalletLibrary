@@ -2,8 +2,8 @@
 
 namespace HyperWalletLibrary.Model
 {
-    internal interface IApiModel
+    public interface IHyperWalletModel
     {
-        IEnumerable<Link> Links { get; set; }
+        List<Link> Links { get; set; }
     }
 }

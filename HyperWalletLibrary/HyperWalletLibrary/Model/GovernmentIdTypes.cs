@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace HyperWalletLibrary.Model
+﻿namespace HyperWalletLibrary.Model
 {
-    [Serializable]
     public enum GovernmentIdTypes
     {
         PASSPORT,
