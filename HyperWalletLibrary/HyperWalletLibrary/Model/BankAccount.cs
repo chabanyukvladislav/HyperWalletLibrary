@@ -12,13 +12,12 @@ namespace HyperWalletLibrary.Model
         public string Token { get; set; }
         [JsonProperty("status")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Status Status { get; set; }
+        public Status? Status { get; set; }
         [JsonProperty("createdOn")]
-        [JsonIgnore]
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
         [JsonProperty("type")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Types Type { get; set; }
+        public Types? Type { get; set; }
         [JsonProperty("transferMethodCountry")]
         public string TransferMethodCountry { get; set; }
         [JsonProperty("transferMethodCurrency")]
@@ -33,7 +32,7 @@ namespace HyperWalletLibrary.Model
         public string BankAccountPurpose { get; set; }
         [JsonProperty("bankAccountRelationship")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public BankAccountRelationships BankAccountRelationship { get; set; }
+        public BankAccountRelationships? BankAccountRelationship { get; set; }
         [JsonProperty("bankId")]
         public string BankId { get; set; }
         [JsonProperty("bankName")]
@@ -63,7 +62,7 @@ namespace HyperWalletLibrary.Model
         [JsonProperty("countryOfNationality")]
         public string CountryOfNationality { get; set; }
         [JsonProperty("dateOfBirth")]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         [JsonProperty("driversLicenseId")]
         public string DriversLicenseId { get; set; }
         [JsonProperty("employerId")]
@@ -72,12 +71,12 @@ namespace HyperWalletLibrary.Model
         public string FirstName { get; set; }
         [JsonProperty("gender")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Genders Gender { get; set; }
+        public Genders? Gender { get; set; }
         [JsonProperty("governmentId")]
         public string GovernmentId { get; set; }
         [JsonProperty("governmentIdType")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public GovernmentIdTypes GovernmentIdType { get; set; }
+        public GovernmentIdTypes? GovernmentIdType { get; set; }
         [JsonProperty("intermediaryBankAccountId")]
         public string IntermediaryBankAccountId { get; set; }
         [JsonProperty("intermediaryBankAddressLine1")]
@@ -97,7 +96,7 @@ namespace HyperWalletLibrary.Model
         [JsonProperty("intermediaryBankStateProvince")]
         public string IntermediaryBankStateProvince { get; set; }
         [JsonProperty("isDefaultTransferMethod")]
-        public bool IsDefaultTransferMethod { get; set; }
+        public bool? IsDefaultTransferMethod { get; set; }
         [JsonProperty("lastName")]
         public string LastName { get; set; }
         [JsonProperty("middleName")]
@@ -112,7 +111,7 @@ namespace HyperWalletLibrary.Model
         public string PostalCode { get; set; }
         [JsonProperty("profileType")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public ProfileTypes ProfileType { get; set; }
+        public ProfileTypes? ProfileType { get; set; }
         [JsonProperty("stateProvince")]
         public string StateProvince { get; set; }
         [JsonProperty("wireInstructions")]

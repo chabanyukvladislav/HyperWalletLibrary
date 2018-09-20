@@ -11,12 +11,10 @@ namespace HyperWalletLibrary.Model
         [JsonProperty("token")]
         public string Token { get; set; }
         [JsonProperty("status")]
-        [JsonIgnore]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Status Status { get; set; }
+        public Status? Status { get; set; }
         [JsonProperty("createdOn")]
-        [JsonIgnore]
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
         [JsonProperty("clientUserId")]
         public string ClientUserId { get; set; }
         [JsonProperty("addressLine1")]
@@ -32,7 +30,7 @@ namespace HyperWalletLibrary.Model
         [JsonProperty("countryOfNationality")]
         public string CountryOfNationality { get; set; }
         [JsonProperty("dateOfBirth")]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         [JsonProperty("driversLicenseId")]
         public string DriversLicenseId { get; set; }
         [JsonProperty("email")]
@@ -43,12 +41,12 @@ namespace HyperWalletLibrary.Model
         public string FirstName { get; set; }
         [JsonProperty("gender")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Genders Gender { get; set; }
+        public Genders? Gender { get; set; }
         [JsonProperty("governmentId")]
         public string GovernmentId { get; set; }
         [JsonProperty("governmentIdType")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public GovernmentIdTypes GovernmentIdType { get; set; }
+        public GovernmentIdTypes? GovernmentIdType { get; set; }
         [JsonProperty("language")]
         public string Language { get; set; }
         [JsonProperty("lastName")]
@@ -65,14 +63,14 @@ namespace HyperWalletLibrary.Model
         public string PostalCode { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("profileType")]
-        public ProfileTypes ProfileType { get; set; }
+        public ProfileTypes? ProfileType { get; set; }
         [JsonProperty("programToken")]
         public string ProgramToken { get; set; }
         [JsonProperty("stateProvince")]
         public string StateProvince { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("verificationStatus")]
-        public VerificationStatus VerificationStatus { get; set; }
+        public VerificationStatus? VerificationStatus { get; set; }
         [JsonProperty("links")]
         public List<Link> Links { get; set; }
     }

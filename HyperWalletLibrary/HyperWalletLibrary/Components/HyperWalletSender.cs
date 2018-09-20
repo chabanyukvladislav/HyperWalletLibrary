@@ -58,8 +58,6 @@ namespace HyperWalletLibrary.Components
             if (string.IsNullOrWhiteSpace(address))
                 throw new ArgumentNullException("Address can not be null or empty");
             _response = await _client.GetAsync(address);
-            if (!_response.IsSuccessStatusCode)
-                throw new HttpRequestException("Request is not success. The code of error: " + _response.StatusCode);
             return _response;
         }
 
@@ -69,8 +67,6 @@ namespace HyperWalletLibrary.Components
                 throw new ArgumentNullException("Address can not be null or empty");
             SerializeContent(item);
             _response = await _client.PostAsync(address, _content);
-            if (!_response.IsSuccessStatusCode)
-                throw new HttpRequestException("Request is not success. The code of error: " + _response.StatusCode);
             return _response;
         }
 
@@ -80,8 +76,6 @@ namespace HyperWalletLibrary.Components
                 throw new ArgumentNullException("Address can not be null or empty");
             SerializeContent(item);
             _response = await _client.PutAsync(address, _content);
-            if (!_response.IsSuccessStatusCode)
-                throw new HttpRequestException("Request is not success. The code of error: " + _response.StatusCode);
             return _response;
         }
     }
