@@ -4,7 +4,7 @@ using HyperWalletLibrary.Model;
 
 namespace HyperWalletLibrary.Components
 {
-    internal interface IGetterFromHttpResponseMessage<T> where T : IHyperWalletModel
+    public interface IGetterFromHttpResponseMessage<T> where T : IHyperWalletModel
     {
         HttpResponseMessage Content { get; set; }
 

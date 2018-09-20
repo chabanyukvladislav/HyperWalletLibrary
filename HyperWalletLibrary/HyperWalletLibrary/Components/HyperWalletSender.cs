@@ -3,7 +3,6 @@ using HyperWalletLibrary.Model;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Security;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Text;
@@ -15,16 +14,17 @@ namespace HyperWalletLibrary.Components
         private readonly HttpClient _client;
         private HttpResponseMessage _response;
         private HttpContent _content;
+        private IHyperWalletAccount _account;
 
-        public HyperWalletSender(string programToken, string username, SecureString password)
+        public HyperWalletSender(IHyperWalletAccount account)
         {
             HttpClientHandler handler = new HttpClientHandler
             {
-                Credentials = new NetworkCredential(username, password)
+                Credentials = new NetworkCredential(account.Portal.Username, account.Portal.Password)
             };
             _client = new HttpClient(handler);
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", programToken);
+            _account = account;
         }
 
         public async Task<HttpResponseMessage> SendAsync(string address, IHyperWalletSenderSettings<T> settings)
@@ -57,6 +57,7 @@ namespace HyperWalletLibrary.Components
         {
             if (string.IsNullOrWhiteSpace(address))
                 throw new ArgumentNullException("Address can not be null or empty");
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", _account.Portal.ProgramToken);
             _response = await _client.GetAsync(address);
             return _response;
         }
@@ -66,6 +67,7 @@ namespace HyperWalletLibrary.Components
             if (string.IsNullOrWhiteSpace(address))
                 throw new ArgumentNullException("Address can not be null or empty");
             SerializeContent(item);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", _account.Portal.ProgramToken);
             _response = await _client.PostAsync(address, _content);
             return _response;
         }
@@ -75,6 +77,7 @@ namespace HyperWalletLibrary.Components
             if (string.IsNullOrWhiteSpace(address))
                 throw new ArgumentNullException("Address can not be null or empty");
             SerializeContent(item);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", _account.Portal.ProgramToken);
             _response = await _client.PutAsync(address, _content);
             return _response;
         }

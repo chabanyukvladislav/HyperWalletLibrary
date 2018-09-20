@@ -1,7 +1,7 @@
 ﻿using HyperWalletLibrary.Api;
 using HyperWalletLibrary.Model;
-using System.Security;
 using System.Threading.Tasks;
+using HyperWalletLibrary.Components;
 
 namespace HyperWalletLibraryXUnitTests.ApiTest.Component.ConcreteHyperWalletApi
 {
@@ -10,7 +10,7 @@ namespace HyperWalletLibraryXUnitTests.ApiTest.Component.ConcreteHyperWalletApi
         private const string USER_TOKEN = @"";
         private const string LOCAL_ADDRESS = @"";
 
-        public ConcreteHyperWalletApiUser(string programToken, string username, SecureString password) : base(USER_TOKEN, LOCAL_ADDRESS, programToken, username, password) { }
+        public ConcreteHyperWalletApiUser(IHyperWalletAccount account) : base(USER_TOKEN, LOCAL_ADDRESS, account) { }
 
         public override async Task<Response<HyperWalletLibrary.Model.User>> GetAsync()
         {

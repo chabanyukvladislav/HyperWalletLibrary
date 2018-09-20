@@ -13,11 +13,22 @@ namespace HyperWalletLibraryXUnitTests.ComponentTest.HyperWalletSenderTest
         public async void SendAsync_Get_StatusCode_200_OK()
         {
             //Arrange
-            string username = "restapiuser@15472201613";
-            string password = "Ke002308!!";
-            string programToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletSender<User> sender = new HyperWalletSender<User>(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletSender<User> sender = new HyperWalletSender<User>(account);
             string address = "https://api.sandbox.hyperwallet.com/rest/v3/users/";
             HyperWalletSenderSettings<User> settings = new HyperWalletSenderSettings<User>()
             {
@@ -35,11 +46,22 @@ namespace HyperWalletLibraryXUnitTests.ComponentTest.HyperWalletSenderTest
         public async void SendAsync_Post_StatusCode_201_Created()
         {
             //Arrange
-            string username = "restapiuser@15472221611";
-            string password = "Ke002308!!";
-            string programToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletSender<User> sender = new HyperWalletSender<User>(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletSender<User> sender = new HyperWalletSender<User>(account);
             string address = "https://api.sandbox.hyperwallet.com/rest/v3/users/";
             int id = new Random().Next(100000000, 1000000000);
             User item = new User()
@@ -74,11 +96,22 @@ namespace HyperWalletLibraryXUnitTests.ComponentTest.HyperWalletSenderTest
         public async void SendAsync_Put_StatusCode_200_OK()
         {
             //Arrange
-            string username = "restapiuser@15472201613";
-            string password = "Ke002308!!";
-            string programToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletSender<User> sender = new HyperWalletSender<User>(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletSender<User> sender = new HyperWalletSender<User>(account);
             string address = "https://api.sandbox.hyperwallet.com/rest/v3/users/usr-01f5cfa0-5507-4d14-a9f8-df0791b5eea9/";
             User item = new User()
             {
@@ -101,11 +134,22 @@ namespace HyperWalletLibraryXUnitTests.ComponentTest.HyperWalletSenderTest
         public async void GetAsync_StatusCode_200_OK()
         {
             //Arrange
-            string username = "restapiuser@15472201613";
-            string password = "Ke002308!!";
-            string programToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletSender<User> sender = new HyperWalletSender<User>(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletSender<User> sender = new HyperWalletSender<User>(account);
             string address = "https://api.sandbox.hyperwallet.com/rest/v3/users/";
 
             //Act
@@ -119,11 +163,22 @@ namespace HyperWalletLibraryXUnitTests.ComponentTest.HyperWalletSenderTest
         public async void PostAsync_StatusCode_201_Created()
         {
             //Arrange
-            string username = "restapiuser@15472221611";
-            string password = "Ke002308!!";
-            string programToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletSender<User> sender = new HyperWalletSender<User>(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletSender<User> sender = new HyperWalletSender<User>(account);
             string address = "https://api.sandbox.hyperwallet.com/rest/v3/users/";
             int id = new Random().Next(100000000, 1000000000);
             User item = new User()
@@ -153,11 +208,22 @@ namespace HyperWalletLibraryXUnitTests.ComponentTest.HyperWalletSenderTest
         public async void PutAsync_StatusCode_200_OK()
         {
             //Arrange
-            string username = "restapiuser@15472201613";
-            string password = "Ke002308!!";
-            string programToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletSender<User> sender = new HyperWalletSender<User>(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletSender<User> sender = new HyperWalletSender<User>(account);
             string address = "https://api.sandbox.hyperwallet.com/rest/v3/users/usr-01f5cfa0-5507-4d14-a9f8-df0791b5eea9/";
             User item = new User()
             {

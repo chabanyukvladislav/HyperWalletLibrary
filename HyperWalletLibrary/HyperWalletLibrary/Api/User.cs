@@ -1,5 +1,5 @@
-﻿using System.Security;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using HyperWalletLibrary.Components;
 using HyperWalletLibrary.Model;
 
 namespace HyperWalletLibrary.Api
@@ -9,7 +9,7 @@ namespace HyperWalletLibrary.Api
         private const string USER_TOKEN = @"";
         private const string LOCAL_ADDRESS = @"";
 
-        public User(string programToken, string username, SecureString password) : base(USER_TOKEN, LOCAL_ADDRESS, programToken, username, password) { }
+        public User(IHyperWalletAccount account) : base(USER_TOKEN, LOCAL_ADDRESS, account) { }
 
         public override async Task<Response<Model.User>> GetAsync()
         {

@@ -1,5 +1,4 @@
 ﻿using HyperWalletLibrary.Model;
-using System.Security;
 using System.Threading.Tasks;
 using HyperWalletLibrary.Components;
 using System.Net.Http;
@@ -15,10 +14,10 @@ namespace HyperWalletLibrary.Api
         protected readonly IHyperWalletSender<T> _sender;
         protected HttpResponseMessage _response;
 
-        protected AbstractHyperWalletApi(string userToken, string localAddress, string programToken, string username, SecureString password)
+        protected AbstractHyperWalletApi(string userToken, string localAddress, IHyperWalletAccount account)
         {
             Address = GenerateAddress(userToken, localAddress);
-            _sender = new HyperWalletSender<T>(programToken, username, password);
+            _sender = new HyperWalletSender<T>(account);
         }
 
         public virtual async Task<Response<T>> GetAsync()

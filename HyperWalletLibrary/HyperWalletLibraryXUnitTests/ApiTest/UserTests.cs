@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Net;
+using HyperWalletLibrary.Components;
 using HyperWalletLibrary.Model;
 using Xunit;
 
@@ -11,11 +11,22 @@ namespace HyperWalletLibraryXUnitTests.ApiTest
         public async void GetAsync_Count_MoreThen_0()
         {
             //Arrange
-            string username = "restapiuser@15472201613";
-            string password = "Ke002308!!";
-            string programToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletLibrary.Api.User api = new HyperWalletLibrary.Api.User(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletLibrary.Api.User api = new HyperWalletLibrary.Api.User(account);
 
             //Act
             Response<User> response = await api.GetAsync();
@@ -28,12 +39,23 @@ namespace HyperWalletLibraryXUnitTests.ApiTest
         public async void GetAsync_WithToken_LinksCount_MoreThen_0()
         {
             //Arrange
-            string username = "restapiuser@15472201613";
-            string password = "Ke002308!!";
-            string programToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3";
             string token = "usr-01f5cfa0-5507-4d14-a9f8-df0791b5eea9";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletLibrary.Api.User api = new HyperWalletLibrary.Api.User(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletLibrary.Api.User api = new HyperWalletLibrary.Api.User(account);
 
             //Act
             User response = await api.GetAsync(token);
@@ -46,11 +68,22 @@ namespace HyperWalletLibraryXUnitTests.ApiTest
         public async void PostAsync_LinksCount_MoreThen_0()
         {
             //Arrange
-            string username = "restapiuser@15472221611";
-            string password = "Ke002308!!";
-            string programToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletLibrary.Api.User api = new HyperWalletLibrary.Api.User(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletLibrary.Api.User api = new HyperWalletLibrary.Api.User(account);
             int id = new Random().Next(100000000, 1000000000);
             User item = new User()
             {
@@ -79,12 +112,23 @@ namespace HyperWalletLibraryXUnitTests.ApiTest
         public async void PutAsync_LinksCount_MoreThen_0()
         {
             //Arrange
-            string username = "restapiuser@15472201613";
-            string password = "Ke002308!!";
-            string programToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3";
             string token = "usr-01f5cfa0-5507-4d14-a9f8-df0791b5eea9";
-            NetworkCredential credential = new NetworkCredential(null, password);
-            HyperWalletLibrary.Api.User api = new HyperWalletLibrary.Api.User(programToken, username, credential.SecurePassword);
+            IHyperWalletAccount account = new HyperWalletAccount
+            {
+                Main = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-91b2bb2f-88c4-4a5d-b6ae-ef24b25567a3",
+                    Username = "restapiuser@15472201613"
+                },
+                Portal = new HyperWalletProgram()
+                {
+                    Password = "Ke002308!!",
+                    ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
+                    Username = "restapiuser@15472221611"
+                }
+            };
+            HyperWalletLibrary.Api.User api = new HyperWalletLibrary.Api.User(account);
             User item = new User()
             {
                 LastName = "Ddd"

@@ -1,6 +1,6 @@
 ﻿namespace HyperWalletLibrary.Api
 {
-    interface IHyperWalletApi
+    public interface IHyperWalletApi
     {
         string LocalAddress { get; }
         string UserToken { get; }
