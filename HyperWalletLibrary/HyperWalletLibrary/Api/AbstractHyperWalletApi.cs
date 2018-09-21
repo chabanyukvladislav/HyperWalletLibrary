@@ -9,11 +9,12 @@ namespace HyperWalletLibrary.Api
     public class AbstractHyperWalletApi<T> where T : IHyperWalletModel
     {
         private const string MAIN_ADDRESS = @"https://api.sandbox.hyperwallet.com/rest/v3/users/";
-        private string Address { get; set; }
 
         protected readonly IHyperWalletSender<T> _sender;
         protected HttpResponseMessage _response;
         protected IHyperWalletAccount _account;
+
+        private string Address { get; set; }
 
         protected AbstractHyperWalletApi(string userToken, string localAddress, IHyperWalletAccount account)
         {
@@ -28,8 +29,12 @@ namespace HyperWalletLibrary.Api
             if (!_response.IsSuccessStatusCode)
                 throw new HttpRequestException("Request is not success. The code of error: " + _response.StatusCode);
             IGetterFromHttpResponseMessage<Response<T>> getter = new ContentFromHttpResponseGetter<Response<T>>(_response);
-            return await getter.GetAsync();
+            Response<T> result = await getter.GetAsync();
+            if (result.Count > 10)
+                result = await GetAll(result);
+            return result;
         }
+
         public virtual async Task<T> GetAsync(string token)
         {
             GenerateAddress(token);
@@ -72,6 +77,25 @@ namespace HyperWalletLibrary.Api
             if (string.IsNullOrWhiteSpace(token))
                 return;
             Address = string.Format("{0}{1}", Address, token);
+        }
+
+        private async Task<Response<T>> GetAll(Response<T> result)
+        {
+            for (int i = 10; i < result.Count; i += 10)
+            {
+                string address = string.Format("{0}?offset={1}", Address, i);
+                _response = await _sender.GetAsync(address);
+                IGetterFromHttpResponseMessage<Response<T>> getter = new ContentFromHttpResponseGetter<Response<T>>(_response);
+                Response<T> get = await getter.GetAsync();
+                if (get != null && get.Data != null)
+                    foreach (T t in get.Data)
+                    {
+                        result.Data.Add(t);
+                        result.Limit++;
+                    }
+            }
+
+            return result;
         }
     }
 }

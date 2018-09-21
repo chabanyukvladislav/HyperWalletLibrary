@@ -9,6 +9,7 @@ namespace Server.Component
 
         public List<User> Convert()
         {
+            if (Content == null) return null;
             List<User> list = new List<User>();
             foreach (HyperWalletLibrary.Model.User apiUser in Content.Data)
             {

@@ -9,16 +9,17 @@ namespace HyperWalletLibrary.Components
     {
         public HttpResponseMessage Content { get; set; }
 
-        public ContentFromHttpResponseGetter(HttpResponseMessage content)
-        {
-            Content = content;
-        }
-
         public async Task<T> GetAsync()
         {
+            if (Content == null) return default(T);
             string content = await Content.Content.ReadAsStringAsync();
             T data = JsonConvert.DeserializeObject<T>(content);
             return data;
+        }
+
+        public ContentFromHttpResponseGetter(HttpResponseMessage content = null)
+        {
+            Content = content;
         }
     }
 }

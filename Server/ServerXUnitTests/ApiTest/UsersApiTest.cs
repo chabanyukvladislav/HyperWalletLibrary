@@ -8,7 +8,7 @@ namespace ServerXUnitTests.ApiTest
     public class UsersApiTest
     {
         [Fact]
-        public async void GetAsync_Count_NotNull()
+        public async void GetAsync_NotNull()
         {
             //Arrange
             UserApiWorker worker = new UserApiWorker();

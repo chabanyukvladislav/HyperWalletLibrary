@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:XamarinClient.ViewModels"
+             x:Class="XamarinClient.Views.LoginPage"
+             Title="HyperWallet">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid VerticalOptions="Center">
+            <StackLayout Margin="20">
+                <Entry Text="{Binding Id}" Placeholder="Id"/>
+                <Entry IsPassword="True" Text="{Binding Password}" Margin="0, 20, 0, 20" Placeholder="Password"/>
+                <Button Text="Login" HorizontalOptions="End" Command="{Binding Login}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

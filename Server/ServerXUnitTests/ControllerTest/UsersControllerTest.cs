@@ -28,7 +28,7 @@ namespace ServerXUnitTests.ControllerTest
         }
 
         [Fact]
-        public async void GetAsync_WithToken_NotNull()
+        public async void Get_WithToken_NotNull()
         {
             //Arrange
             string connectionString = @"Data Source=VLAD191100\VLAD191100;Database=HyperWalletTest;User ID=vlad191100;Password=Vlad18201111;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";

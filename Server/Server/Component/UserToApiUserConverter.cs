@@ -8,6 +8,7 @@ namespace Server.Component
 
         public User Convert()
         {
+            if (Content == null) return null;
             User apiUser = new User
             {
                 Token = Content.Token,
