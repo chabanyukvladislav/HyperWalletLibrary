@@ -19,9 +19,8 @@ namespace Server.Component
             return list;
         }
 
-        public ResponseApiUserToListUserConverter() { }
         public ResponseApiUserToListUserConverter(
-            HyperWalletLibrary.Model.Response<HyperWalletLibrary.Model.User> content)
+            HyperWalletLibrary.Model.Response<HyperWalletLibrary.Model.User> content = null)
         {
             Content = content;
         }

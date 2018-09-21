@@ -13,11 +13,13 @@ namespace HyperWalletLibrary.Api
 
         protected readonly IHyperWalletSender<T> _sender;
         protected HttpResponseMessage _response;
+        protected IHyperWalletAccount _account;
 
         protected AbstractHyperWalletApi(string userToken, string localAddress, IHyperWalletAccount account)
         {
             Address = GenerateAddress(userToken, localAddress);
             _sender = new HyperWalletSender<T>(account);
+            _account = account;
         }
 
         public virtual async Task<Response<T>> GetAsync()

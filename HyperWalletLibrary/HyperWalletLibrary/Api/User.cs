@@ -23,6 +23,8 @@ namespace HyperWalletLibrary.Api
 
         public override async Task<Model.User> PostAsync(Model.User item)
         {
+            item.ProfileType = ProfileTypes.INDIVIDUAL;
+            item.ProgramToken = _account.Portal.ProgramToken;
             return await base.PostAsync(item);
         }
 

@@ -1,6 +1,4 @@
-using HyperWalletLibrary.Model;
 using Server.Api;
-using Server.Database.Model;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -16,7 +14,7 @@ namespace ServerXUnitTests.ApiTest
             UserApiWorker worker = new UserApiWorker();
 
             //Act
-            List<User> list = await worker.GetAsync();
+            List<Server.Database.Model.User> list = await worker.GetAsync();
 
             //Assert
             Assert.True(list != null);
@@ -53,8 +51,6 @@ namespace ServerXUnitTests.ApiTest
                 LastName = "Surname",
                 MiddleName = "Middle",
                 PostalCode = "00000",
-                ProfileType = ProfileTypes.INDIVIDUAL,
-                ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
                 StateProvince = "CA"
             };
 

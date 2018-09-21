@@ -3,18 +3,20 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("HyperWalletLibraryXUnitTests")]
 
 namespace HyperWalletLibrary.Model
 {
-    public class User: IHyperWalletModel
+    public class User : IHyperWalletModel
     {
         [JsonProperty("token")]
         public string Token { get; set; }
         [JsonProperty("status")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Status? Status { get; set; }
+        internal Status? Status { get; set; }
         [JsonProperty("createdOn")]
-        public DateTime? CreatedOn { get; set; }
+        internal DateTime? CreatedOn { get; set; }
         [JsonProperty("clientUserId")]
         public string ClientUserId { get; set; }
         [JsonProperty("addressLine1")]
@@ -63,9 +65,9 @@ namespace HyperWalletLibrary.Model
         public string PostalCode { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("profileType")]
-        public ProfileTypes? ProfileType { get; set; }
+        internal ProfileTypes? ProfileType { get; set; }
         [JsonProperty("programToken")]
-        public string ProgramToken { get; set; }
+        internal string ProgramToken { get; set; }
         [JsonProperty("stateProvince")]
         public string StateProvince { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]

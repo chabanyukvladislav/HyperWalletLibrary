@@ -1,12 +1,11 @@
 using System;
-using HyperWalletLibrary.Model;
 using Server.Database;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Server.Database.DatabaseContext;
 using Xunit;
 
-namespace ServerXUnitTests.DatabaseTest
+namespace ServerXUnitTests.DatabaseTest.DatabaseWorkerTest
 {
     public class UserDatabaseWorkerTest
     {
@@ -36,7 +35,7 @@ namespace ServerXUnitTests.DatabaseTest
             options.UseSqlServer(connectionString);
             Context context = new Context(options.Options);
             UserDatabaseWorker worker = new UserDatabaseWorker(context);
-            string clientId = "1318886111";
+            string clientId = "585148410";
 
             //Act
             Server.Database.Model.User user = await worker.GetAsync(clientId);
@@ -66,8 +65,6 @@ namespace ServerXUnitTests.DatabaseTest
                 LastName = "Surname",
                 MiddleName = "Middle",
                 PostalCode = "00000",
-                ProfileType = ProfileTypes.INDIVIDUAL,
-                ProgramToken = "000000000000000000",
                 StateProvince = "State"
             };
 
@@ -87,7 +84,7 @@ namespace ServerXUnitTests.DatabaseTest
             options.UseSqlServer(connectionString);
             Context context = new Context(options.Options);
             UserDatabaseWorker worker = new UserDatabaseWorker(context);
-            string clientId = "1318886111";
+            string clientId = "585148410";
             string rand = new Random().Next().ToString();
             Server.Database.Model.User user = new Server.Database.Model.User()
             {

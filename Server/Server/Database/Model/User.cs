@@ -1,6 +1,4 @@
-﻿using HyperWalletLibrary.Model;
-
-namespace Server.Database.Model
+﻿namespace Server.Database.Model
 {
     public class User : IModel
     {
@@ -15,8 +13,6 @@ namespace Server.Database.Model
         public string MiddleName { get; set; }
         public string PhoneNumber { get; set; }
         public string PostalCode { get; set; }
-        public ProfileTypes? ProfileType { get; set; }
-        public string ProgramToken { get; set; }
         public string StateProvince { get; set; }
 
         public User() { }
@@ -33,8 +29,6 @@ namespace Server.Database.Model
             MiddleName = apiUser.MiddleName;
             PhoneNumber = apiUser.PhoneNumber;
             PostalCode = apiUser.PostalCode;
-            ProfileType = apiUser.ProfileType;
-            ProgramToken = apiUser.ProgramToken;
             StateProvince = apiUser.StateProvince;
         }
     }

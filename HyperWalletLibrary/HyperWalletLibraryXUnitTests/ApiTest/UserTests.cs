@@ -87,8 +87,6 @@ namespace HyperWalletLibraryXUnitTests.ApiTest
             int id = new Random().Next(100000000, 1000000000);
             User item = new User()
             {
-                ProfileType = ProfileTypes.INDIVIDUAL,
-                ProgramToken = "prg-a3054235-6b29-432a-a01e-47ff2d944941",
                 ClientUserId = "t-" + id,
                 FirstName = "John",
                 LastName = "Developer",

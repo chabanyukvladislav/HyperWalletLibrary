@@ -6,11 +6,6 @@ namespace Server.Component
     {
         public Database.Model.User Content { get; set; }
 
-        public UserToApiUserConverter(Database.Model.User user = null)
-        {
-            Content = user;
-        }
-
         public User Convert()
         {
             User apiUser = new User
@@ -26,11 +21,14 @@ namespace Server.Component
                 MiddleName = Content.MiddleName,
                 PhoneNumber = Content.PhoneNumber,
                 PostalCode = Content.PostalCode,
-                ProfileType = Content.ProfileType,
-                ProgramToken = Content.ProgramToken,
                 StateProvince = Content.StateProvince
             };
             return apiUser;
+        }
+
+        public UserToApiUserConverter(Database.Model.User user = null)
+        {
+            Content = user;
         }
     }
 }
