@@ -1,7 +1,9 @@
-﻿using Server.Component;
+﻿using System;
+using Server.Component;
 
 namespace Server.Database.Model
 {
+    [Serializable]
     public class User : IModel
     {
         public string Token { get; set; }
@@ -20,13 +22,12 @@ namespace Server.Database.Model
         public User() { }
         public User(HyperWalletLibrary.Model.User apiUser)
         {
-            StringToHashConverter converter = new StringToHashConverter(apiUser.Email);
             Token = apiUser.Token;
             Id = apiUser.ClientUserId;
             AddressLine1 = apiUser.AddressLine1;
             City = apiUser.City;
             Country = apiUser.Country;
-            Email = converter.Convert();
+            Email = apiUser.Email;
             FirstName = apiUser.FirstName;
             LastName = apiUser.LastName;
             MiddleName = apiUser.MiddleName;
