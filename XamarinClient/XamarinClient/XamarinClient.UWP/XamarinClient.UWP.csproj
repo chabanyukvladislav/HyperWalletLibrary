@@ -145,6 +145,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Auth0.OidcClient.Core">
+      <Version>2.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Auth0.OidcClient.UWP">
+      <Version>2.3.0</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.2.0.839982" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.7" />
   </ItemGroup>

@@ -19,8 +19,8 @@ namespace Server.Controllers
             _databaseWorker = new UserDatabaseWorker(context);
         }
 
-        [HttpGet]
-        public async Task<User> Get([FromQuery] string token)
+        [HttpPost]
+        public async Task<string> Post([FromBody] string token)
         {
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
             JwtSecurityToken security = handler.ReadJwtToken(token);
@@ -28,9 +28,10 @@ namespace Server.Controllers
             User user = await _databaseWorker.GetAsync(sub);
             if (user == null)
             {
-                return null;
+                //create
             }
-            return user;
+            //get token
+            return "";
         }
     }
 }

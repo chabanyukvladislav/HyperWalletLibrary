@@ -9,11 +9,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid VerticalOptions="Center">
-            <StackLayout Margin="20">
-                <Entry Text="{Binding Id}" Placeholder="Id"/>
-                <Entry IsPassword="True" Text="{Binding Password}" Margin="0, 20, 0, 20" Placeholder="Password"/>
-                <Button Text="Login" HorizontalOptions="End" Command="{Binding Login}"/>
-            </StackLayout>
+            <Button Text="Login" Command="{Binding Login}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
