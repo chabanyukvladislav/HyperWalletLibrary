@@ -15,14 +15,32 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controllers\AccountController.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\UserCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\IConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\ITokenConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\TokenToNickConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controllers\IController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controllers\UserController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Token.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OAuth\ILoginController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OAuth\IOAuthController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OAuth\LoginController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OAuth\OAuthController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TransfersViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\UsersViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TransfersPage.xaml.cs">
+      <DependentUpon>TransfersPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UsersPage.xaml.cs">
+      <DependentUpon>UsersPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -33,12 +51,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\UsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TransfersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Server.Api;
-using Server.Database;
 using Server.Database.DatabaseContext;
 using Server.Database.Model;
+using Server.Service;
 
 namespace Server.Controllers
 {
@@ -14,48 +13,35 @@ namespace Server.Controllers
     [Authorize]
     public class UsersController : ControllerBase
     {
-        private readonly IDatabaseWorker<User> _databaseWorker;
-        private readonly IApiWorker<User> _apiWorker;
+        private readonly IUserService _service;
 
         public UsersController(Context context)
         {
-            _databaseWorker = new UserDatabaseWorker(context);
-            _apiWorker = new UserApiWorker();
+            _service = new UserService(context);
         }
 
         [HttpGet]
         public async Task<List<User>> Get()
         {
-            List<User> list = await _databaseWorker.GetAsync();
-            return list;
+            return await _service.Get();
         }
 
         [HttpGet("{token}")]
         public async Task<User> Get(string clientId)
         {
-            User user = await _databaseWorker.GetAsync(clientId);
-            return user;
+            return await _service.Get(clientId);
         }
 
         [HttpPost]
         public async Task<bool> Post([FromBody] User value)
         {
-            User user = await _apiWorker.PostAsync(value);
-            if (user == null)
-                return false;
-            bool result = await _databaseWorker.PostAsync(user);
-            return result;
+            return await _service.Post(value);
         }
 
         [HttpPut("{token}")]
         public async Task<bool> Put(string clientId, [FromBody] User value)
         {
-            User data = await _databaseWorker.GetAsync(clientId);
-            User user = await _apiWorker.PutAsync(data.Token, value);
-            if (user == null)
-                return false;
-            bool result = await _databaseWorker.PutAsync(clientId, user);
-            return result;
+            return await _service.Put(clientId, value);
         }
     }
 }

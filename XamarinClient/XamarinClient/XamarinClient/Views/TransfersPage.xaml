@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:XamarinClient.ViewModels"
-             x:Class="XamarinClient.Views.LoginPage"
-             Title="HyperWallet">
+             x:Class="XamarinClient.Views.TransfersPage" Title="{Binding AccountText}">
     <ContentPage.BindingContext>
-        <vm:LoginViewModel/>
+        <vm:TransfersViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding ToolBarButtonText}" Command="{Binding ToolBarButtonCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Grid VerticalOptions="Center">
-            <Button Text="Login" Command="{Binding Login}"/>
-        </Grid>
+        <StackLayout>
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
