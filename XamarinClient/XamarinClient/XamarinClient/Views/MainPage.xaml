@@ -14,14 +14,14 @@
                 <views:UsersPage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Transfers">
+        <NavigationPage Title="Payments">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:TransfersPage />
+                <views:PaymentsPage />
             </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>

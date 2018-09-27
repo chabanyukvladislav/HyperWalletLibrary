@@ -21,7 +21,7 @@ namespace XamarinClient.ViewModels
             }
         }
 
-        public UsersViewModel()
+        public UsersViewModel(): base()
         {
             UserCollection.CollectionSubject.Where(el => el != null).Subscribe(UpdateCollection);
             Users = new ObservableCollection<User>(UserCollection.Collection);

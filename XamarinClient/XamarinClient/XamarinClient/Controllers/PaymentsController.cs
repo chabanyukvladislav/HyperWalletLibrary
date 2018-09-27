@@ -1,23 +1,22 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using XamarinClient.Models;
 using XamarinClient.OAuth;
 
 namespace XamarinClient.Controllers
 {
-    class UserController : IController<User>
+    class PaymentsController : IController<Payment>
     {
-        private const string ADDRESS = "http://localhost:11801/api/users/";
+        private const string ADDRESS = "http://localhost:11801/api/payments/";
 
         private readonly HttpClient _client;
         private HttpResponseMessage _response;
 
-        public UserController()
+        public PaymentsController()
         {
             _client = new HttpClient();
             _response = new HttpResponseMessage();
@@ -37,28 +36,28 @@ namespace XamarinClient.Controllers
             TokenChanged?.Invoke();
         }
 
-        public async Task<List<User>> GetAsync()
+        public async Task<List<Payment>> GetAsync()
         {
             try
             {
                 _response = await _client.GetAsync(ADDRESS);
                 string content = await _response.Content.ReadAsStringAsync();
-                List<User> list = JsonConvert.DeserializeObject<List<User>>(content);
+                List<Payment> list = JsonConvert.DeserializeObject<List<Payment>>(content);
                 return list;
             }
             catch (Exception)
             {
-                return new List<User>();
+                return new List<Payment>();
             }
         }
 
-        public async Task<User> GetAsync(string id)
+        public async Task<Payment> GetAsync(string id)
         {
             try
             {
                 _response = await _client.GetAsync(ADDRESS + id);
                 string content = await _response.Content.ReadAsStringAsync();
-                User user = JsonConvert.DeserializeObject<User>(content);
+                Payment user = JsonConvert.DeserializeObject<Payment>(content);
                 return user;
             }
             catch (Exception)
@@ -67,7 +66,7 @@ namespace XamarinClient.Controllers
             }
         }
 
-        public async Task<bool> PostAsync(User value)
+        public async Task<bool> PostAsync(Payment value)
         {
             try
             {
@@ -82,19 +81,9 @@ namespace XamarinClient.Controllers
             }
         }
 
-        public async Task<bool> PutAsync(string id, User value)
+        public async Task<bool> PutAsync(string id, Payment value)
         {
-            try
-            {
-                string json = JsonConvert.SerializeObject(value);
-                HttpContent content = new StringContent(json, null, "application/json");
-                _response = await _client.PutAsync(ADDRESS + id, content);
-                return _response.IsSuccessStatusCode;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
 
         public event Action TokenChanged;

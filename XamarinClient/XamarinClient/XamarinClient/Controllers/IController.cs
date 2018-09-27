@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using XamarinClient.Models;
 
@@ -10,5 +11,7 @@ namespace XamarinClient.Controllers
         Task<T> GetAsync(string id);
         Task<bool> PostAsync(T value);
         Task<bool> PutAsync(string id, T value);
+
+        event Action TokenChanged;
     }
 }

@@ -9,6 +9,6 @@ namespace Server.Database
         Task<List<T>> GetAsync();
         Task<T> GetAsync(string clientUserId);
         Task<bool> PostAsync(T item);
-        Task<bool> PutAsync(string clientUserId, T item);
+        Task<bool> PutAsync(string clientUserId, T value);
     }
 }

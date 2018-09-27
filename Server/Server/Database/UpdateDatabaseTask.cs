@@ -13,8 +13,10 @@ namespace Server.Database
     public class UpdateDatabaseTask : IHostedService
     {
         private const int SLEEP = 60 * 60 * 1000;
-        private readonly IDatabaseWorker<User> _databaseWorker;
-        private readonly IApiWorker<User> _apiWorker;
+        private readonly IDatabaseWorker<User> _databaseUserWorker;
+        private readonly IDatabaseWorker<Payment> _databasePaymentWorker;
+        private readonly IApiWorker<User> _apiUserWorker;
+        private readonly IApiWorker<Payment> _apiPaymentWorker;
 
         private bool Stoped { get; set; }
 
@@ -24,8 +26,10 @@ namespace Server.Database
             DbContextOptionsBuilder<Context> options = new DbContextOptionsBuilder<Context>();
             options.UseSqlServer(connectionString);
             Context context = new Context(options.Options);
-            _databaseWorker = new UserDatabaseWorker(context);
-            _apiWorker = new UserApiWorker();
+            _databaseUserWorker = new UserDatabaseWorker(context);
+            _apiUserWorker = new UserApiWorker();
+            _databasePaymentWorker = new PaymentDatabaseWorker(context);
+            _apiPaymentWorker = new PaymentApiWorker();
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -51,18 +55,26 @@ namespace Server.Database
 
         private async void UpdateDatabase()
         {
-            List<User> api = await _apiWorker.GetAsync();
-            List<User> database = await _databaseWorker.GetAsync();
-            foreach (User user in api)
+            List<User> userApi = await _apiUserWorker.GetAsync();
+            List<Payment> paymentApi = await _apiPaymentWorker.GetAsync();
+            List<User> userDatabase = await _databaseUserWorker.GetAsync();
+            List<Payment> paymentDatabase = await _databasePaymentWorker.GetAsync();
+            foreach (User user in userApi)
             {
-                User search = database.FirstOrDefault(el => el.Token == user.Token);
+                User search = userDatabase.FirstOrDefault(el => el.Token == user.Token);
                 if (search == null)
                 {
-                    await _databaseWorker.PostAsync(user);
+                    await _databaseUserWorker.PostAsync(user);
                     continue;
                 }
 
-                await _databaseWorker.PutAsync(search.Id, user);
+                await _databaseUserWorker.PutAsync(search.Id, user);
+            }
+            foreach (Payment user in paymentApi)
+            {
+                Payment search = paymentDatabase.FirstOrDefault(el => el.Token == user.Token);
+                if (search == null)
+                    await _databasePaymentWorker.PostAsync(user);
             }
         }
     }

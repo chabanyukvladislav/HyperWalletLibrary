@@ -5,12 +5,12 @@ using XamarinClient.Models;
 
 namespace XamarinClient.Collections
 {
-    static class UserCollection
+    static class PaymentCollection
     {
-        private static readonly IController<User> _controller;
-        private static List<User> _collection;
+        private static readonly IController<Payment> _controller;
+        private static List<Payment> _collection;
 
-        public static List<User> Collection
+        public static List<Payment> Collection
         {
             get => _collection;
             private set
@@ -19,13 +19,13 @@ namespace XamarinClient.Collections
                 CollectionSubject.OnNext(_collection);
             }
         }
-        public static ISubject<List<User>> CollectionSubject { get; }
+        public static ISubject<List<Payment>> CollectionSubject { get; }
 
-        static UserCollection()
+        static PaymentCollection()
         {
-            CollectionSubject = new Subject<List<User>>();
-            Collection = new List<User>();
-            _controller = new UserController();
+            CollectionSubject = new Subject<List<Payment>>();
+            Collection = new List<Payment>();
+            _controller = new PaymentsController();
             LoadCollection();
             _controller.TokenChanged += TokenChanged;
         }

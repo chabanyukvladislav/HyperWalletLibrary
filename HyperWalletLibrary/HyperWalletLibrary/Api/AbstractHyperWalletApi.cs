@@ -2,13 +2,12 @@
 using System.Threading.Tasks;
 using HyperWalletLibrary.Components;
 using System.Net.Http;
-using System;
 
 namespace HyperWalletLibrary.Api
 {
     public class AbstractHyperWalletApi<T> where T : IHyperWalletModel
     {
-        private const string MAIN_ADDRESS = @"https://api.sandbox.hyperwallet.com/rest/v3/users/";
+        private const string MAIN_ADDRESS = @"https://api.sandbox.hyperwallet.com/rest/v3/";
 
         protected readonly IHyperWalletSender<T> _sender;
         protected HttpResponseMessage _response;
@@ -16,9 +15,9 @@ namespace HyperWalletLibrary.Api
 
         private string Address { get; set; }
 
-        protected AbstractHyperWalletApi(string userToken, string localAddress, IHyperWalletAccount account)
+        protected AbstractHyperWalletApi(string type, string token, string localAddress, IHyperWalletAccount account)
         {
-            Address = GenerateAddress(userToken, localAddress);
+            Address = GenerateAddress(type, token, localAddress);
             _sender = new HyperWalletSender<T>(account);
             _account = account;
         }
@@ -63,13 +62,13 @@ namespace HyperWalletLibrary.Api
             return await getter.GetAsync();
         }
 
-        private string GenerateAddress(string userToken, string localAddress)
+        private string GenerateAddress(string type, string token, string localAddress)
         {
-            if (string.IsNullOrWhiteSpace(userToken))
+            if (string.IsNullOrWhiteSpace(type))
                 return MAIN_ADDRESS;
-            if (string.IsNullOrWhiteSpace(localAddress))
-                throw new ArgumentNullException("LocalAddress can not be null or empty");
-            string address = string.Format("{0}{1}/{2}/", MAIN_ADDRESS, userToken, localAddress);
+            if (string.IsNullOrWhiteSpace(token))
+                return string.Format("{0}{1}/", MAIN_ADDRESS, type);
+            string address = string.Format("{0}{1}/{2}/{3}/", MAIN_ADDRESS, type, token, localAddress);
             return address;
         }
         private void GenerateAddress(string token = "")

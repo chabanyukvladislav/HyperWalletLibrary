@@ -9,7 +9,7 @@ namespace Server.Component
         private const string ID_CLAIM_TYPE = "sub";
         private const string NAME_CLAIM_TYPE = "given_name";
         private const string SURNAME_CLAIM_TYPE = "family_name";
-        private const string EMAIL_CLAIM_TYPE = "email";
+        private const string NICKNAME_CLAIM_TYPE = "nickname";
 
         public string Content { get; set; }
 
@@ -26,7 +26,7 @@ namespace Server.Component
             User user = new User
             {
                 Id = security.Claims.FirstOrDefault(el => el.Type == ID_CLAIM_TYPE)?.Value,
-                Email = security.Claims.FirstOrDefault(el => el.Type == EMAIL_CLAIM_TYPE)?.Value,
+                Email = security.Claims.FirstOrDefault(el => el.Type == NICKNAME_CLAIM_TYPE)?.Value + "@gmail.com",
                 FirstName = security.Claims.FirstOrDefault(el => el.Type == NAME_CLAIM_TYPE)?.Value,
                 LastName = security.Claims.FirstOrDefault(el => el.Type == SURNAME_CLAIM_TYPE)?.Value
             };

@@ -9,6 +9,6 @@ namespace Server.Api
         Task<List<T>> GetAsync();
         Task<T> GetAsync(string token);
         Task<T> PostAsync(T item);
-        Task<T> PutAsync(string token, T item);
+        Task<T> PutAsync(string token, T value);
     }
 }

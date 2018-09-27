@@ -1,5 +1,4 @@
 ﻿using System;
-using Server.Component;
 
 namespace Server.Database.Model
 {

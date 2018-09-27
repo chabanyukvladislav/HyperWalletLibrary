@@ -6,10 +6,11 @@ namespace HyperWalletLibrary.Api
 {
     public class User : AbstractHyperWalletApi<Model.User>
     {
+        private const string TYPE = @"users";
         private const string USER_TOKEN = @"";
         private const string LOCAL_ADDRESS = @"";
 
-        public User(IHyperWalletAccount account) : base(USER_TOKEN, LOCAL_ADDRESS, account) { }
+        public User(IHyperWalletAccount account) : base(TYPE, USER_TOKEN, LOCAL_ADDRESS, account) { }
 
         public override async Task<Response<Model.User>> GetAsync()
         {

@@ -7,10 +7,11 @@ namespace HyperWalletLibraryXUnitTests.ApiTest.Component.ConcreteHyperWalletApi
 {
     class ConcreteHyperWalletApiUser : AbstractHyperWalletApi<HyperWalletLibrary.Model.User>
     {
+        private const string TYPE = @"users";
         private const string USER_TOKEN = @"";
         private const string LOCAL_ADDRESS = @"";
 
-        public ConcreteHyperWalletApiUser(IHyperWalletAccount account) : base(USER_TOKEN, LOCAL_ADDRESS, account) { }
+        public ConcreteHyperWalletApiUser(IHyperWalletAccount account) : base(TYPE, USER_TOKEN, LOCAL_ADDRESS, account) { }
 
         public override async Task<Response<HyperWalletLibrary.Model.User>> GetAsync()
         {
