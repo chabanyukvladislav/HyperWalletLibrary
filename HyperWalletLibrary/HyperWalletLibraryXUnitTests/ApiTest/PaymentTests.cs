@@ -1,5 +1,4 @@
-﻿using System;
-using HyperWalletLibrary.Components;
+﻿using HyperWalletLibrary.Components;
 using HyperWalletLibrary.Model;
 using Xunit;
 
@@ -84,12 +83,9 @@ namespace HyperWalletLibraryXUnitTests.ApiTest
                 }
             };
             HyperWalletLibrary.Api.Payment api = new HyperWalletLibrary.Api.Payment(account);
-            int id = new Random().Next(100000000, 1000000000);
             Payment item = new Payment()
             {
                 Amount = 20,
-                ClientPaymentId = id.ToString(),
-                Currency = "USD",
                 DestinationToken = "usr-4beda015-edb5-4dd1-a881-60ae59c8db50"
             };
 

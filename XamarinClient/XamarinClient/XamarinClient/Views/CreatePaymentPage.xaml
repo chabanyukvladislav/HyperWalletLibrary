@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:XamarinClient.ViewModels"
+             xmlns:components="clr-namespace:XamarinClient.Components"
+             x:Class="XamarinClient.Views.CreatePaymentPage" Title="{Binding AccountText}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <components:TokenToEmailConverter x:Key="toEmail"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding ToolBarButtonText}" Command="{Binding ToolBarButtonCommand}"/>
+        <ToolbarItem Text="Create" Command="{Binding Create}" IsEnabled="{Binding CanCreate}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <vm:CreatePaymentPageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Entry Text="{Binding Payment.Amount}" Placeholder="Amount (USD)"/>
+            <Entry Text="{Binding Payment.DestinationToken, Converter={StaticResource toEmail}}" Placeholder="Destination Email"/>
+            <Entry Text="{Binding Payment.Notes}" Placeholder="Notes"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

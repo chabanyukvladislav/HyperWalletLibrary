@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:XamarinClient.ViewModels"
+             xmlns:components="clr-namespace:XamarinClient.Components"
              x:Class="XamarinClient.Views.PaymentsPage" Title="{Binding AccountText}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <components:TokenToEmailConverter x:Key="toEmail"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <vm:PaymentsViewModel/>
     </ContentPage.BindingContext>
@@ -16,6 +22,18 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <ListView Grid.Row="0" ItemsSource="{Binding Payments}" x:Name="listView" Margin="10">
+                <ListView.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Destination" Grid.Column="0" Margin="10, 0, 5, 0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="Amount (USD)" Grid.Column="1" Margin="0, 0, 5, 0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="Notes" Grid.Column="2" Margin="0, 0, 10, 0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    </Grid>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -24,12 +42,10 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding DestinationToken}" Grid.Column="0" Margin="10, 0, 5, 0"/>
-                                <Label Text="{Binding Amount}" Grid.Column="1" Margin="0, 0, 5, 0"/>
-                                <Label Text="{Binding Currency}" Grid.Column="2" Margin="0, 0, 5, 0"/>
-                                <Label Text="{Binding Notes}" Grid.Column="3" Margin="0, 0, 10, 0"/>
+                                <Label Text="{Binding DestinationToken, Converter={StaticResource toEmail}}" Grid.Column="0" Margin="10, 0, 5, 0" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Amount}" Grid.Column="1" Margin="0, 0, 5, 0" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Notes}" Grid.Column="2" Margin="0, 0, 10, 0" HorizontalTextAlignment="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

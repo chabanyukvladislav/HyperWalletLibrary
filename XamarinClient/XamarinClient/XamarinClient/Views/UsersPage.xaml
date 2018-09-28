@@ -10,8 +10,22 @@
         <ToolbarItem Text="{Binding ToolBarButtonText}" Command="{Binding ToolBarButtonCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="10">
             <ListView ItemsSource="{Binding Users}">
+                <ListView.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Id" Grid.Column="0" Margin="10, 0, 5, 0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="FirstName" Grid.Column="1" Margin="0, 0, 5, 0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="LastName" Grid.Column="2" Margin="0, 0, 5, 0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        <Label Text="Email" Grid.Column="3" Margin="0, 0, 10, 0" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                    </Grid>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -22,10 +36,10 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Id}" Grid.Column="0" Margin="10, 0, 5, 0"/>
-                                <Label Text="{Binding FirstName}" Grid.Column="1" Margin="0, 0, 5, 0"/>
-                                <Label Text="{Binding LastName}" Grid.Column="2" Margin="0, 0, 5, 0"/>
-                                <Label Text="{Binding Email}" Grid.Column="3" Margin="0, 0, 10, 0"/>
+                                <Label Text="{Binding Id}" Grid.Column="0" Margin="10, 0, 5, 0" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding FirstName}" Grid.Column="1" Margin="0, 0, 5, 0" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding LastName}" Grid.Column="2" Margin="0, 0, 5, 0" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Email}" Grid.Column="3" Margin="0, 0, 10, 0" HorizontalTextAlignment="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

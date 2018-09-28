@@ -2,6 +2,7 @@
 using HyperWalletLibrary.Model;
 using System.Threading.Tasks;
 using HyperWalletLibrary.Components;
+using System;
 
 namespace HyperWalletLibraryXUnitTests.ApiTest.Component.ConcreteHyperWalletApi
 {
@@ -27,6 +28,8 @@ namespace HyperWalletLibraryXUnitTests.ApiTest.Component.ConcreteHyperWalletApi
         {
             item.ProgramToken = _account.Portal.ProgramToken;
             item.Purpose = "OTHER";
+            item.Currency = "USD";
+            item.ClientPaymentId = new Random().Next().ToString();
             return await base.PostAsync(item);
         }
     }

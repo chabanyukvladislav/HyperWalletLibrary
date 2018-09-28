@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Server.Database;
 using Server.Database.DatabaseContext;
+using Server.Hubs;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Server
@@ -34,6 +35,7 @@ namespace Server
                     options.Authority = Configuration["Auth0:Domain"];
                     options.Audience = Configuration["Auth0:ApiIdentifier"];
                 });
+            services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddHostedService<UpdateDatabaseTask>();
         }
@@ -46,6 +48,7 @@ namespace Server
             }
 
             app.UseAuthentication();
+            app.UseSignalR(options => { options.MapHub<NotificationHub>("/notification"); });
             app.UseMvc();
         }
     }

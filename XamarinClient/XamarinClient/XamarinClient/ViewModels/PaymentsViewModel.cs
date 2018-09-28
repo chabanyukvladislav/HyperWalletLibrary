@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamarinClient.Collections;
 using XamarinClient.Models;
+using XamarinClient.Views;
 
 namespace XamarinClient.ViewModels
 {
@@ -37,9 +39,10 @@ namespace XamarinClient.ViewModels
             Payments = new ObservableCollection<Payment>(value);
         }
 
-        private void ExecuteCreate()
+        private async void ExecuteCreate()
         {
-            throw new NotImplementedException();
+            await ((NavigationPage) ((TabbedPage) Application.Current.MainPage).Children.FirstOrDefault(el =>
+                el.Title == "Payments")).PushAsync(new CreatePaymentPage());
         }
     }
 }

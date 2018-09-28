@@ -66,6 +66,7 @@ namespace XamarinClient.OAuth
         {
             await _client.LogoutAsync();
             IdToken = null;
+            Token = null;
         }
     }
 }

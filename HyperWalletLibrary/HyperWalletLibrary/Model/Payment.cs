@@ -20,9 +20,9 @@ namespace HyperWalletLibrary.Model
         [JsonProperty("amount")]
         public double Amount { get; set; }
         [JsonProperty("clientPaymentId")]
-        public string ClientPaymentId { get; set; }
+        public string ClientPaymentId { get; internal set; }
         [JsonProperty("currency")]
-        public string Currency { get; set; }
+        internal string Currency { get; set; }
         [JsonProperty("destinationToken")]
         public string DestinationToken { get; set; }
         [JsonProperty("expiresOn")]

@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Components\IConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\ITokenConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Components\TokenToNickConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\TokenToEmailConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\IController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\PaymentsController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controllers\UserController.cs" />
@@ -32,8 +33,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)OAuth\LoginController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OAuth\OAuthController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CreatePaymentPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PaymentsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\UsersViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CreatePaymentPage.xaml.cs">
+      <DependentUpon>CreatePaymentPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -61,6 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\PaymentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CreatePaymentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

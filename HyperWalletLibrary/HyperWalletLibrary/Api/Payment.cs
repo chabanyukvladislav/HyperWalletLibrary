@@ -1,5 +1,6 @@
 ﻿using HyperWalletLibrary.Components;
 using HyperWalletLibrary.Model;
+using System;
 using System.Threading.Tasks;
 
 namespace HyperWalletLibrary.Api
@@ -26,6 +27,8 @@ namespace HyperWalletLibrary.Api
         {
             item.ProgramToken = _account.Portal.ProgramToken;
             item.Purpose = "OTHER";
+            item.Currency = "USD";
+            item.ClientPaymentId = new Random().Next().ToString();
             return await base.PostAsync(item);
         }
     }
