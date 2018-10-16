@@ -1,21 +1,32 @@
 ﻿using HyperWalletLibrary.Api;
+using HyperWalletLibrary.Model;
 using System.Threading.Tasks;
 using HyperWalletLibrary.Components;
 using System;
 
 namespace HyperWalletLibraryXUnitTests.ApiTest.Component.ConcreteHyperWalletApi
 {
-    internal class ConcreteHyperWalletApiPayment : AbstractHyperWalletApi<HyperWalletLibrary.Model.Payment>
+    class ConcreteHyperWalletApiPayment : AbstractHyperWalletApi<HyperWalletLibrary.Model.Payment>
     {
-        private const string Type = @"payments";
-        private const string UserToken = @"";
-        private const string LocalAddress = @"";
+        private const string TYPE = @"payments";
+        private const string USER_TOKEN = @"";
+        private const string LOCAL_ADDRESS = @"";
 
-        public ConcreteHyperWalletApiPayment(IHyperWalletAccount account) : base(Type, UserToken, LocalAddress, account) { }
+        public ConcreteHyperWalletApiPayment(IHyperWalletAccount account) : base(TYPE, USER_TOKEN, LOCAL_ADDRESS, account) { }
+
+        public override async Task<Response<HyperWalletLibrary.Model.Payment>> GetAsync()
+        {
+            return await base.GetAsync();
+        }
+
+        public override async Task<HyperWalletLibrary.Model.Payment> GetAsync(string token = "")
+        {
+            return await base.GetAsync(token);
+        }
 
         public override async Task<HyperWalletLibrary.Model.Payment> PostAsync(HyperWalletLibrary.Model.Payment item)
         {
-            item.ProgramToken = Account.Portal.ProgramToken;
+            item.ProgramToken = _account.Portal.ProgramToken;
             item.Purpose = "OTHER";
             item.Currency = "USD";
             item.ClientPaymentId = new Random().Next().ToString();
