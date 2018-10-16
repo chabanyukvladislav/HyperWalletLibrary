@@ -1,0 +1,7 @@
+organization=chabanyukvladislav-github
+projectKey=chabanyukvladislav_HyperWalletLibrary
+serverUrl=https://sonarcloud.io
+serverVersion=7.4.0.17996
+dashboardUrl=https://sonarcloud.io/dashboard?id=chabanyukvladislav_HyperWalletLibrary
+ceTaskId=AWZ887wvny3k_lyf1hgN
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWZ887wvny3k_lyf1hgN

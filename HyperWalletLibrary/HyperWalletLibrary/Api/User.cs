@@ -6,32 +6,17 @@ namespace HyperWalletLibrary.Api
 {
     public class User : AbstractHyperWalletApi<Model.User>
     {
-        private const string TYPE = @"users";
-        private const string USER_TOKEN = @"";
-        private const string LOCAL_ADDRESS = @"";
+        private const string Type = @"users";
+        private const string UserToken = @"";
+        private const string LocalAddress = @"";
 
-        public User(IHyperWalletAccount account) : base(TYPE, USER_TOKEN, LOCAL_ADDRESS, account) { }
-
-        public override async Task<Response<Model.User>> GetAsync()
-        {
-            return await base.GetAsync();
-        }
-
-        public override async Task<Model.User> GetAsync(string token)
-        {
-            return await base.GetAsync(token);
-        }
+        public User(IHyperWalletAccount account) : base(Type, UserToken, LocalAddress, account) { }
 
         public override async Task<Model.User> PostAsync(Model.User item)
         {
             item.ProfileType = ProfileTypes.INDIVIDUAL;
-            item.ProgramToken = _account.Portal.ProgramToken;
+            item.ProgramToken = Account.Portal.ProgramToken;
             return await base.PostAsync(item);
-        }
-
-        public override async Task<Model.User> PutAsync(string token, Model.User item)
-        {
-            return await base.PutAsync(token, item);
         }
     }
 }
